@@ -3,6 +3,7 @@ import {
   Categories,
   Contacts,
   Footer,
+  HeroSlider,
   Header,
   NewArrivals,
   Popup,
@@ -11,7 +12,10 @@ import {
 export default function Home() {
   return (
     <>
-      <Header />
+      <header className="header" id="header">
+        <Header />
+        <HeroSlider />
+      </header>
       <Categories />
       <NewArrivals />
       <Banner />

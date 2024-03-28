@@ -54,7 +54,7 @@ export function NewArrivals() {
         <p>All the latest picked from designer of our store</p>
       </div>
 
-      <div className="product-center">
+      <div className="products">
         {products.map((product, idx) => (
           <ProductItem key={idx} {...product} />
         ))}

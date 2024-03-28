@@ -1,28 +1,12 @@
-import { useEffect, useState } from "react";
-import Glide, { Autoplay } from "@glidejs/glide/dist/glide.modular.esm";
-import "@glidejs/glide/src/assets/sass/glide.core.scss";
-import "@glidejs/glide/src/assets/sass/glide.theme.scss";
+import { useState } from "react";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
-  useEffect(() => {
-    new Glide("#glide_1").mount({ Autoplay });
-    // new Glide(".glide", {
-    //   type: "carousel",
-    //   startAt: 0,
-    //   // autoplay: 3000,
-    //   gap: 0,
-    //   hoverpause: true,
-    //   perView: 1,
-    //   animationDuration: 800,
-    //   animationTimingFunc: "linear",
-    // }).mount();
-  }, []);
   return (
-    <header className="header" id="header">
+    <>
       <div className="top-nav">
         <div className="container d-flex">
           <p>Order Online Or Call Us: (001) 2222-55555</p>
@@ -111,45 +95,6 @@ export function Header() {
           </div>
         </div>
       </div>
-
-      <div className="hero">
-        <div className="glide" id="glide_1">
-          <div className="glide__track" data-glide-el="track">
-            <ul className="glide__slides">
-              <li className="glide__slide">
-                <div className="center">
-                  <div className="left">
-                    <span className="">New Inspiration 2020</span>
-                    <h1 className="">NEW COLLECTION!</h1>
-                    <p>Trending from men's and women's style collection</p>
-                    <a href="#" className="hero-btn">
-                      SHOP NOW
-                    </a>
-                  </div>
-                  <div className="right">
-                    <img className="img1" src="./images/hero-1.png" alt="" />
-                  </div>
-                </div>
-              </li>
-              <li className="glide__slide">
-                <div className="center">
-                  <div className="left">
-                    <span>New Inspiration 2020</span>
-                    <h1>THE PERFECT MATCH!</h1>
-                    <p>Trending from men's and women's style collection</p>
-                    <a href="#" className="hero-btn">
-                      SHOP NOW
-                    </a>
-                  </div>
-                  <div className="right">
-                    <img className="img2" src="./images/hero-2.png" alt="" />
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </header>
+    </>
   );
 }
