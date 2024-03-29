@@ -12,6 +12,7 @@ import {
 export default function Home() {
   return (
     <>
+      <Popup />
       <header className="header" id="header">
         <Header />
         <HeroSlider />
@@ -21,7 +22,6 @@ export default function Home() {
       <Banner />
       <Contacts />
       <Footer />
-      <Popup />
     </>
   );
 }

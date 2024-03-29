@@ -1,10 +1,10 @@
-export * from "./Header";
-export * from "./Footer";
-export * from "./HeroSlider";
-export * from "./Popup";
 export * from "./Banner";
-export * from "./Contacts";
 export * from "./Categories";
-export * from "./NewArrivals";
-
+export * from "./Cart";
+export * from "./Contacts";
+export * from "./Footer";
+export * from "./Header";
+export * from "./HeroSlider";
 export * from "./LoginForm";
+export * from "./NewArrivals";
+export * from "./Popup";

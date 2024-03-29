@@ -1,24 +1,25 @@
 import { ProductType } from "./model";
+import styles from "./styles.module.scss";
 
 export function ProductItem(product: ProductType) {
   return (
-    <div className="product-item">
-      <div className="overlay">
-        <a href="productDetails.html" className="product-thumb">
+    <div className={styles["product-item"]}>
+      <div className={styles.overlay}>
+        <a href="#" className={styles["product-thumb"]}>
           <img src={product.img} alt="" />
         </a>
         {product.discount ? (
-          <span className="discount">{product.discount}%</span>
+          <span className={styles.discount}>{product.discount}%</span>
         ) : (
           ""
         )}
       </div>
-      <div className="product-info">
+      <div className={styles["product-info"]}>
         <span>{product.title}</span>
-        <a href="productDetails.html">{product.description}</a>
+        <a href="#">{product.description}</a>
         <h4>${product.price}</h4>
       </div>
-      <ul className="icons">
+      <ul className={styles.icons}>
         <li>
           <i className="bx bx-heart"></i>
         </li>

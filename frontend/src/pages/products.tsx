@@ -16,7 +16,7 @@ export default function Products() {
       <Header />
 
       <section className="section all-products" id="products">
-        <div className="top container">
+        <div className="top container-2">
           <h1>All Products</h1>
           <form>
             <select>
@@ -31,7 +31,7 @@ export default function Products() {
             </span>
           </form>
         </div>
-        <div className="products container">
+        <div className="products container-2">
           {products.map((product) => (
             <ProductItem {...product} />
           ))}

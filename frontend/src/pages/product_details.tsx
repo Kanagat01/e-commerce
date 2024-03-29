@@ -15,7 +15,7 @@ export default function ProductDetails() {
       <Header />
 
       <section className="section product-detail">
-        <div className="details container">
+        <div className="details container-2">
           <div className="left image-container">
             <div className="main">
               <img src="../images/product-8.jpg" alt="" />
@@ -59,13 +59,13 @@ export default function ProductDetails() {
       </section>
 
       <section className="section featured">
-        <div className="top container">
+        <div className="top container-2">
           <h1>Related Products</h1>
           <a href="#" className="view-more">
             View more
           </a>
         </div>
-        <div className="products container">
+        <div className="products container-2">
           {products.map((product) => (
             <ProductItem {...product} />
           ))}

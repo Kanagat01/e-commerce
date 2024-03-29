@@ -27,8 +27,8 @@ export const Routing = () => {
   ];
   return (
     <Routes>
-      {routes.map(([route, component]) => (
-        <Route path={route} element={component} />
+      {routes.map(([route, component], idx) => (
+        <Route key={idx} path={route} element={component} />
       ))}
       <Route path="*" element={<Navigate to={HOME_ROUTE} replace />} />
     </Routes>

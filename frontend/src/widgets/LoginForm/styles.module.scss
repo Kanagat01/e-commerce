@@ -1,0 +1,20 @@
+.login-form {
+  padding: 5rem 0;
+  max-width: 50rem;
+  margin: 5rem auto;
+}
+.login-form form {
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+  p {
+    margin-bottom: 2rem;
+  }
+  p a {
+    color: dodgerblue;
+    margin-left: 5px;
+  }
+}

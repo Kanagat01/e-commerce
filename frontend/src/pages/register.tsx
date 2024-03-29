@@ -4,7 +4,7 @@ export default function Register() {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className="container-2">
         <LoginForm />
       </div>
       <Footer />

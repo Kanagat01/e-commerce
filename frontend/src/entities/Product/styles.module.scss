@@ -1,0 +1,140 @@
+.product-item {
+  position: relative;
+  width: 27rem;
+  margin-bottom: 3rem;
+
+  .icons {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+  }
+  .icons li {
+    cursor: pointer;
+    background-color: var(--white);
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-size: 2.3rem;
+    transition: 300ms ease-out;
+    transform: translateY(20px);
+    visibility: hidden;
+    opacity: 0;
+
+    &:hover {
+      background-color: var(--green);
+      color: var(--white);
+    }
+
+    &:first-child {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &:hover .icons li {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .overlay {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      visibility: hidden;
+      opacity: 0;
+      transition: 300ms ease-out;
+    }
+  }
+
+  &:hover {
+    .overlay::after {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .product-thumb img {
+      transform: scale(1.1);
+    }
+  }
+
+  .discount {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--green);
+    padding: 0.5rem 1rem;
+    color: var(--white);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+  }
+}
+
+.product-thumb img {
+  width: 100%;
+  height: 31rem;
+  object-fit: cover;
+  transition: all 500ms linear;
+}
+
+.product-info {
+  padding: 1rem;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    transition: all 300ms ease;
+
+    &:hover {
+      color: var(--green);
+    }
+  }
+}
+
+@media only screen and (max-width: 567px) {
+  .product-thumb img {
+    height: 20rem;
+  }
+
+  .product-item {
+    width: 40%;
+    margin-right: 2rem;
+
+    .icons li {
+      padding: 0.5rem 1rem;
+      font-size: 1.8rem;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+label {
+  margin-bottom: 1rem;
+}
+input {
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 1.5rem 0;
+  text-indent: 1rem;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+}
+input::placeholder {
+  font-size: 1.6rem;
+  color: #222;
+}

@@ -4,7 +4,7 @@ export default function Login() {
   return (
     <>
       <Header />
-      <div className="container">
+      <div className="container-2">
         <LoginForm />
       </div>
       <Footer />

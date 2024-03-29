@@ -1,16 +1,7 @@
 @import "https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+
 @import "./base.scss";
-@import "./header.scss";
-@import "./navigation.scss";
-@import "./icons.scss";
-@import "./hero.scss";
-@import "./category-section.scss";
-@import "./new-arrivals.scss";
-@import "./banner.scss";
-@import "./contact.scss";
-@import "./popup.scss";
-@import "./all-products.scss";
-@import "./pagination.scss";
+@import "./products.scss";
+@import "./product-detail.scss";
 @import "./cart-items.scss";
-@import "./product-items.scss";
-@import "./login-form.scss";
