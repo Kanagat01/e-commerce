@@ -8,13 +8,18 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
 
+    .col:first-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .col h2 {
       margin-bottom: 1.5rem;
     }
-
     .col p {
       width: 70%;
       margin-bottom: 2rem;
+      text-align: center;
     }
   }
   form {

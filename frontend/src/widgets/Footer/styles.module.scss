@@ -31,14 +31,19 @@
       font-weight: 300;
     }
     h4 {
+      text-transform: uppercase;
+      font-weight: bold;
       margin-bottom: 1rem;
     }
   }
 }
 
 @media only screen and (max-width: 567px) {
-  footer .row {
+  .footer .row {
     grid-template-columns: 1fr;
     row-gap: 3rem;
+  }
+  .footer .col {
+    align-items: center;
   }
 }

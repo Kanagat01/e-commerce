@@ -14,7 +14,7 @@ export function Cart() {
   let amountsDict: Record<number, number> = {};
   let prevSum = 0;
   products.forEach((product) => {
-    const storedAmount = localStorage.getItem(`amount_${product.id}`);
+    const storedAmount = sessionStorage.getItem(`amount_${product.id}`);
     amountsDict[product.id] = storedAmount ? Number(storedAmount) : 1;
     prevSum += amountsDict[product.id] * product.price;
   });
@@ -22,7 +22,7 @@ export function Cart() {
   const [sum, setSum] = useState<number>(prevSum);
 
   const updateAmount = (id: number, newAmount: number, price: number) => {
-    localStorage.setItem(`amount_${id}`, newAmount.toString());
+    sessionStorage.setItem(`amount_${id}`, newAmount.toString());
     if (newAmount >= 1) {
       setSum((prevData) => prevData + (newAmount - amounts[id]) * price);
       setAmounts((prevData) => ({ ...prevData, [id]: newAmount }));

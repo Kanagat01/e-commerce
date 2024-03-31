@@ -24,6 +24,7 @@
     transition: all 1000ms ease-in-out;
 
     h1 {
+      max-width: 90%;
       font-size: 5rem;
       margin: 1rem 0;
     }
@@ -58,11 +59,6 @@
       right: -25%;
       bottom: -50%;
     }
-    img:nth-child(2) {
-      width: 90%;
-      right: -40%;
-      bottom: -40%;
-    }
   }
 }
 
@@ -93,9 +89,6 @@
     img:nth-child(1) {
       width: 90%;
     }
-    img:nth-child(2) {
-      width: 100%;
-    }
   }
 }
 
@@ -103,9 +96,6 @@
   .center .right {
     img:nth-child(1) {
       width: 30rem;
-    }
-    img:nth-child(2) {
-      width: 33rem;
     }
   }
 
@@ -125,6 +115,13 @@
     p {
       font-size: 1.5rem;
       width: 80%;
+    }
+  }
+}
+@media only screen and (max-width: 420px) {
+  .center .right {
+    img:nth-child(1) {
+      width: 23rem;
     }
   }
 }

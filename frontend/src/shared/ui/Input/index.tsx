@@ -1,13 +1,18 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, SelectHTMLAttributes } from "react";
 import styles from "./styles.module.scss";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label: string;
 };
 
-type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
+export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
+};
+
+export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
+  label: string;
+  options: Array<{ label: string; value: string | number }>;
 };
 
 export function Input(props: InputProps) {
@@ -30,5 +35,23 @@ export function Checkbox(props: CheckboxProps) {
       />
       {props.label}
     </label>
+  );
+}
+
+export function Select(props: SelectProps) {
+  return (
+    <>
+      <select {...props}>
+        <option value={props.label} selected disabled>
+          {props.label}
+        </option>
+        {props.options.map((option) => (
+          <option value={option.value}>{option.label}</option>
+        ))}
+      </select>
+      <span>
+        <i className="bx bx-chevron-down"></i>
+      </span>
+    </>
   );
 }

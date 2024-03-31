@@ -14,7 +14,6 @@ const Cart = lazy(() => import("./cart"));
 const Products = lazy(() => import("./products"));
 const ProductDetails = lazy(() => import("./product_details"));
 const Login = lazy(() => import("./login"));
-const Register = lazy(() => import("./register"));
 
 export const Routing = () => {
   const routes: Array<[string, ReactElement]> = [
@@ -23,7 +22,7 @@ export const Routing = () => {
     [PRODUCTS_ROUTE, <Products />],
     [PRODUCT_DETAILS_ROUTE, <ProductDetails />],
     [LOGIN_ROUTE, <Login />],
-    [REGISTER_ROUTE, <Register />],
+    [REGISTER_ROUTE, <Login />],
   ];
   return (
     <Routes>

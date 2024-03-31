@@ -6,13 +6,11 @@ import {
   HeroSlider,
   Header,
   NewArrivals,
-  Popup,
 } from "~/widgets";
 
 export default function Home() {
   return (
     <>
-      <Popup />
       <header className="header" id="header">
         <Header />
         <HeroSlider />

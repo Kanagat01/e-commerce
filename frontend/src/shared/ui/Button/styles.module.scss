@@ -3,8 +3,17 @@ button {
   border: none;
   font-size: 1.6rem;
   padding: 1rem 3rem;
-  margin-right: 1.5rem;
   background-color: var(--green);
   color: white;
   cursor: pointer;
+}
+@media only screen and (max-width: 567px) {
+  button {
+    padding: 1rem 2rem;
+  }
+}
+@media only screen and (max-width: 425px) {
+  button {
+    padding: 1rem;
+  }
 }

@@ -110,6 +110,7 @@
 
 .popup-form {
   width: 100%;
+  max-width: 600px;
   padding: 1.5rem 0;
   text-indent: 1rem;
   margin-bottom: 1.6rem;
@@ -208,13 +209,13 @@
 
     a:link,
     a:visited {
-      padding: 1.5rem 3rem;
+      padding: 1rem 2rem;
     }
   }
 
   .popup-form {
     width: 100%;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     margin-bottom: 1.3rem;
   }
 

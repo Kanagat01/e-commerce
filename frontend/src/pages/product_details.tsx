@@ -25,22 +25,7 @@ export default function ProductDetails() {
             <span>Home/T-shirt</span>
             <h1>Boy’s T-Shirt By Handsome</h1>
             <div className="price">$50</div>
-            <form>
-              <div>
-                <select>
-                  <option value="Select Size" selected disabled>
-                    Select Size
-                  </option>
-                  <option value="1">32</option>
-                  <option value="2">42</option>
-                  <option value="3">52</option>
-                  <option value="4">62</option>
-                </select>
-                <span>
-                  <i className="bx bx-chevron-down"></i>
-                </span>
-              </div>
-            </form>
+
             <form className="form">
               <input type="text" placeholder="1" />
               <a href="cart.html" className="addCart">
