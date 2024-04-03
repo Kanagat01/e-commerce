@@ -1,16 +1,18 @@
 import { Dispatch, SetStateAction } from "react";
 import { NavigateFunction } from "react-router-dom";
-import { ResponseError, User, apiInstance } from "~/shared/api";
-import { HOME_ROUTE } from "~/shared/routes";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 
+import { ResponseError, apiInstance } from "~/shared/api";
+import { HOME_ROUTE } from "~/shared/routes";
+import { TRegisterData, TLoginData } from ".";
+
 export const authorise = async (
-  data: User | { username: string; password: string },
+  data: TRegisterData | TLoginData,
   setIsLoading: Dispatch<SetStateAction<boolean>>,
   setAuth: Dispatch<SetStateAction<boolean>>,
   navigate: NavigateFunction,
-  mode: "auth" | "reg"
+  mode: "reg" | "auth"
 ) => {
   return apiInstance
     .post(mode === "auth" ? "auth/token/" : "auth/register/", data)

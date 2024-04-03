@@ -1,15 +1,17 @@
+import { useUnit } from "effector-react";
 import { Header, Footer, ProductSection } from "~/widgets";
-import { ProductType } from "~/entities/Product";
-import { createResource } from "~/shared/api";
+import { $userProfile } from "~/entities/User";
 
-const resource = createResource("/shop/products/");
-
-export default function CartPage() {
-  const latestProducts: ProductType[] = resource.read();
+export default function Favorites() {
+  const userProfile = useUnit($userProfile);
   return (
     <>
       <Header />
-      <ProductSection title="Избранное" products={latestProducts} />
+      <ProductSection
+        title="Избранное"
+        description="Продукты добавленные в избранное"
+        products={userProfile!.favorites}
+      />
       <Footer />
     </>
   );

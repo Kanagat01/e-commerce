@@ -6,14 +6,15 @@ import {
   useEffect,
   useState,
 } from "react";
+import { fetchUserProfileFx } from "~/entities/User";
 import { getValidToken } from "~/shared/api";
 
-export type AuthContextType = {
+export type TAuthContext = {
   isAuthenticated: boolean;
   setAuth: Dispatch<SetStateAction<boolean>>;
 };
 
-export const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<TAuthContext>({
   isAuthenticated: false,
   setAuth: () => {},
 });
@@ -24,7 +25,10 @@ export const withAuthContext = (component: () => ReactNode) => () => {
   useEffect(() => {
     const checkToken = async () => {
       const token = await getValidToken();
-      setAuth(token ? true : false);
+      if (token) {
+        fetchUserProfileFx();
+        setAuth(true);
+      }
     };
     checkToken();
   }, []);

@@ -1,8 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
+import { useUnit } from "effector-react";
 import { AuthContext } from "~/app/providers/withAuthContext";
-import { Logout, getFavoritesCnt } from "~/features";
+import { Logout } from "~/features";
+import { $favoritesCount } from "~/entities/Product";
 import {
   HOME_ROUTE,
   LOGIN_ROUTE,
@@ -20,11 +22,7 @@ export function Header() {
     setIsOpen(!isOpen);
   };
 
-  const [favoritesCount, setFavoritesCount] = useState(0);
-  useEffect(() => {
-    getFavoritesCnt().then((count) => setFavoritesCount(count));
-  }, []);
-
+  const favoritesCount = useUnit($favoritesCount);
   const renderIcons = () => {
     return (
       <>

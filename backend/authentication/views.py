@@ -1,15 +1,16 @@
 from django.contrib.auth.models import User
-from rest_framework import status
+from rest_framework import status, views
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import *
+from .serializers import UserProfileSerializer
 
 
-class RegisterView(APIView):
+class RegisterView(views.APIView):
     def post(self, request):
         email = request.data.get("email")
         password = request.data.get("password")
@@ -48,3 +49,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+
+class GetUserProfile(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserProfileSerializer(
+            request.user.userprofile, context={'request': request})
+        return Response(serializer.data)

@@ -1,9 +1,9 @@
-import { ProductType, ProductItem } from "~/entities/Product";
+import { TProduct, ProductItem } from "~/entities/Product";
 
 type ProductSectionProps = {
   title: string;
   description?: string;
-  products: ProductType[];
+  products: TProduct[];
 };
 
 export function ProductSection(props: ProductSectionProps) {

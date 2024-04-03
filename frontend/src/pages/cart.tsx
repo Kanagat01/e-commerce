@@ -1,11 +1,9 @@
-import { ProductItem, ProductType } from "~/entities/Product";
-import { createResource } from "~/shared/api";
+import { useUnit } from "effector-react";
+import { $products, ProductItem, TProduct } from "~/entities/Product";
 import { Header, Footer, Cart } from "~/widgets";
 
-const resource = createResource("/shop/products/");
-
 export default function CartPage() {
-  const latestProducts: ProductType[] = resource.read();
+  const latestProducts: TProduct[] = useUnit($products);
   return (
     <>
       <Header />

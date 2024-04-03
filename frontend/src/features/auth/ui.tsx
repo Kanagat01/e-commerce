@@ -5,7 +5,8 @@ import { Spinner } from "react-bootstrap";
 import { AuthContext } from "~/app/providers/withAuthContext";
 import { Button, Input } from "~/shared/ui";
 import { LOGIN_ROUTE, REGISTER_ROUTE } from "~/shared/routes";
-import { useAuth } from "./model";
+
+import { useAuth } from ".";
 import styles from "./styles.module.scss";
 
 export function AuthForm({ formType }: { formType: "login" | "register" }) {

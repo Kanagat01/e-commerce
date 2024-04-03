@@ -1771,13 +1771,6 @@ react-router@6.22.3:
   dependencies:
     "@remix-run/router" "1.15.3"
 
-react-shimmer-skeleton@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-shimmer-skeleton/-/react-shimmer-skeleton-1.0.3.tgz#72870a50ae66e3d2151806e166007e8791266299"
-  integrity sha512-FdRiCksDAavO4/x8YfYJoJAWqX4WPKKDPK5fgvZEGi6G2UDfdoQrK5YbAGpXzmGXMUMLarJhClyKsFjKZUKWEw==
-  dependencies:
-    tslib "^2.3.1"
-
 react-toastify@^10.0.5:
   version "10.0.5"
   resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-10.0.5.tgz#6b8f8386060c5c856239f3036d1e76874ce3bd1e"
@@ -1900,6 +1893,11 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
+skeleton-loading-react@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/skeleton-loading-react/-/skeleton-loading-react-1.1.0.tgz#272356380d6624e19a503b9b39b30284a955f8f1"
+  integrity sha512-Kw3THyrDqhEpm02sgP/2n3PaOOFK2BO5EcB0H5NIOIUpZe5dsm8l3WqYzmJFPp41eyfV7ipSjm3DmdKFioQFiQ==
+
 slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
@@ -1963,7 +1961,7 @@ ts-api-utils@^1.0.1:
   resolved "https://registry.yarnpkg.com/ts-api-utils/-/ts-api-utils-1.3.0.tgz#4b490e27129f1e8e686b45cc4ab63714dc60eea1"
   integrity sha512-UQMIo7pb8WRomKR1/+MFVLTroIvDVtMX3K6OUir8ynLyzB8Jeriont2bTAtmNPa1ekAgN7YPDyf6V+ygrdU+eQ==
 
-tslib@^2.3.1, tslib@^2.4.0:
+tslib@^2.4.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==

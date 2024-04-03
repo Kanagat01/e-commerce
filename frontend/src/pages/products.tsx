@@ -1,14 +1,11 @@
 import { Footer, Header } from "~/widgets";
-import { sortProducts } from "~/features";
-import { ProductItem, ProductType } from "~/entities/Product";
-import { createResource } from "~/shared/api";
-import { Pagination, Select } from "~/shared/ui";
-import { ChangeEvent, useState } from "react";
-
-const resource = createResource("/shop/products/");
+import { $products, ProductItem, sortProducts } from "~/entities/Product";
+import { Select } from "~/shared/ui";
+import { ChangeEvent } from "react";
+import { useUnit } from "effector-react";
 
 export default function Products() {
-  const [products, setProducts] = useState<ProductType[]>(resource.read());
+  const products = useUnit($products);
   return (
     <>
       <Header />
@@ -23,9 +20,9 @@ export default function Products() {
                 { label: "По количеству продаж", value: "by_sales" },
                 { label: "По рейтингу", value: "by_rating" },
               ]}
-              onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-                setProducts(sortProducts(products, e.target.value));
-              }}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                sortProducts({ selectedOption: e.target.value })
+              }
             />
           </form>
         </div>
@@ -35,7 +32,6 @@ export default function Products() {
           ))}
         </div>
       </section>
-      <Pagination data_length={products.length} setData={setProducts} />
       <Footer />
     </>
   );

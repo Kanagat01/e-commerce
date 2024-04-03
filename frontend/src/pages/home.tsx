@@ -1,4 +1,5 @@
-import { createResource } from "~/shared/api";
+import { useUnit } from "effector-react";
+import { $products } from "~/entities/Product";
 import {
   Banner,
   Categories,
@@ -9,7 +10,6 @@ import {
   ProductSection,
 } from "~/widgets";
 
-const resource = createResource("/shop/products/");
 export default function Home() {
   return (
     <>
@@ -21,7 +21,7 @@ export default function Home() {
       <ProductSection
         title="NEW ARRIVALS"
         description="All the latest picked from designer of our store"
-        products={resource.read()}
+        products={useUnit($products)}
       />
       <Banner />
       <Contacts />

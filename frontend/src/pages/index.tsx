@@ -1,35 +1,38 @@
 import { ReactElement, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import {
-  CART_ROUTE,
-  HOME_ROUTE,
-  LOGIN_ROUTE,
-  PRODUCTS_ROUTE,
-  PRODUCT_DETAILS_ROUTE,
-  REGISTER_ROUTE,
-} from "~/shared/routes";
+import * as urls from "~/shared/routes";
+import { PrivateRoute } from "./PrivateRoute";
 
 const HomePage = lazy(() => import("./home"));
 const Cart = lazy(() => import("./cart"));
 const Products = lazy(() => import("./products"));
 const ProductDetails = lazy(() => import("./product_details"));
 const Login = lazy(() => import("./login"));
+const Favorites = lazy(() => import("./favorites"));
 
 export const Routing = () => {
   const routes: Array<[string, ReactElement]> = [
-    [HOME_ROUTE, <HomePage />],
-    [CART_ROUTE, <Cart />],
-    [PRODUCTS_ROUTE, <Products />],
-    [PRODUCT_DETAILS_ROUTE, <ProductDetails />],
-    [LOGIN_ROUTE, <Login />],
-    [REGISTER_ROUTE, <Login />],
+    [urls.HOME_ROUTE, <HomePage />],
+    [urls.CART_ROUTE, <Cart />],
+    [urls.PRODUCTS_ROUTE, <Products />],
+    [urls.PRODUCT_DETAILS_ROUTE, <ProductDetails />],
+    [urls.LOGIN_ROUTE, <Login formType="login" />],
+    [urls.REGISTER_ROUTE, <Login formType="register" />],
+  ];
+  const privateRoutes: Array<[string, ReactElement]> = [
+    [urls.FAVORITES_ROUTE, <Favorites />],
   ];
   return (
     <Routes>
       {routes.map(([route, component], idx) => (
         <Route key={idx} path={route} element={component} />
       ))}
-      <Route path="*" element={<Navigate to={HOME_ROUTE} replace />} />
+      <Route element={<PrivateRoute />}>
+        {privateRoutes.map(([route, component], idx) => (
+          <Route key={idx} path={route} element={component} />
+        ))}
+      </Route>
+      <Route path="*" element={<Navigate to={urls.HOME_ROUTE} replace />} />
     </Routes>
   );
 };

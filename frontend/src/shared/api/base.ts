@@ -36,8 +36,8 @@ export const getValidToken = async (): Promise<string | null> => {
   try {
     const is_refresh_verified = await verifyToken(refreshToken);
     if (is_refresh_verified) {
-      const response = await axios.post(`${API_URL}/token/refresh/`, {
-        token: refreshToken,
+      const response = await axios.post(`${API_URL}/auth/token/refresh/`, {
+        refresh: refreshToken,
       });
       localStorage.setItem("access_token", response.data.access);
     }
@@ -58,34 +58,3 @@ apiInstance.interceptors.request.use(async (config) => {
   }
   return config;
 });
-
-const fetcher = async (url: string) => {
-  return apiInstance.get(url).then((res) => res.data);
-};
-
-export const createResource = (url: string) => {
-  let status = "pending";
-  let result: any;
-  let suspender = fetcher(url).then(
-    (data) => {
-      status = "success";
-      result = data;
-    },
-    (error) => {
-      status = "error";
-      result = error;
-    }
-  );
-
-  return {
-    read() {
-      if (status === "pending") {
-        throw suspender;
-      } else if (status === "error") {
-        throw result;
-      } else if (status === "success") {
-        return result;
-      }
-    },
-  };
-};

@@ -4,14 +4,14 @@
   margin-bottom: 3rem;
 
   .icons {
+    display: flex;
+    align-items: center;
     position: absolute;
     left: 50%;
     top: 35%;
     transform: translateX(-50%);
-    display: flex;
-    align-items: center;
   }
-  .icons li {
+  .icons a {
     cursor: pointer;
     background-color: var(--white);
     text-align: center;
@@ -44,7 +44,7 @@
     }
   }
 
-  &:hover .icons li {
+  &:hover .icons a {
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
@@ -132,7 +132,7 @@
     width: 40%;
     margin-right: 2rem;
 
-    .icons li {
+    .icons a {
       padding: 0.5rem 1rem;
       font-size: 1.8rem;
     }

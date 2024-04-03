@@ -1,12 +1,11 @@
 import { NavLink, generatePath } from "react-router-dom";
-import { ProductType, addToFavorites } from "./model";
-import styles from "./styles.module.scss";
 import { PRODUCT_DETAILS_ROUTE } from "~/shared/routes";
 import { Input } from "~/shared/ui";
-import { useState } from "react";
 
-export function ProductItem(props: ProductType) {
-  const [product, setProduct] = useState(props);
+import { TProduct, markFavorite } from "./model";
+import styles from "./styles.module.scss";
+
+export function ProductItem(product: TProduct) {
   return (
     <div className={styles["product-item"]}>
       <div className={styles.overlay}>
@@ -30,32 +29,31 @@ export function ProductItem(props: ProductType) {
         </NavLink>
         <h4>{product.price} ₽</h4>
       </div>
-      <ul className={styles.icons}>
-        <li onClick={() => addToFavorites(product, setProduct)}>
-          {product.is_favorite ? (
+      <div className={styles.icons}>
+        <a onClick={() => markFavorite(product)}>
+          {product.isFavorite ? (
             <i className="bx bxs-heart" style={{ color: "red" }}></i>
           ) : (
             <i className="bx bx-heart"></i>
           )}
-        </li>
-        <li>
+        </a>
+        <a>
           <i className="bx bx-cart"></i>
-        </li>
-        <li>
-          <NavLink
-            to={generatePath(PRODUCT_DETAILS_ROUTE, {
-              product_id: product.id.toString(),
-            })}
-          >
-            <i className="bx bx-info-circle"></i>
-          </NavLink>
-        </li>
-      </ul>
+        </a>
+        <NavLink
+          to={generatePath(PRODUCT_DETAILS_ROUTE, {
+            product_id: product.id.toString(),
+          })}
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          <i className="bx bx-info-circle"></i>
+        </NavLink>
+      </div>
     </div>
   );
 }
 
-export function ProductDetail(product: ProductType) {
+export function ProductDetail(product: TProduct) {
   return (
     <div className="details container-2">
       <div className="left image-container">
