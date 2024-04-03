@@ -1,15 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Offcanvas } from "react-bootstrap";
 import { AuthContext } from "~/app/providers/withAuthContext";
+import { Logout, getFavoritesCnt } from "~/features";
 import {
-  CART_ROUTE,
   HOME_ROUTE,
   LOGIN_ROUTE,
   PROFILE_ROUTE,
+  CART_ROUTE,
+  FAVORITES_ROUTE,
 } from "~/shared/routes";
 import styles from "./styles.module.scss";
-import { Logout } from "~/features";
-import { Offcanvas } from "react-bootstrap";
 
 export function Header() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -18,6 +19,12 @@ export function Header() {
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
+
+  const [favoritesCount, setFavoritesCount] = useState(0);
+  useEffect(() => {
+    getFavoritesCnt().then((count) => setFavoritesCount(count));
+  }, []);
+
   const renderIcons = () => {
     return (
       <>
@@ -25,10 +32,10 @@ export function Header() {
           <i className="bx bx-search"></i>
         </div>
         {isAuthenticated ? (
-          <div className={styles.icon}>
+          <NavLink to={FAVORITES_ROUTE} className={styles.icon}>
             <i className="bx bx-heart"></i>
-            <span className="d-flex align-items-center">0</span>
-          </div>
+            <span className="d-flex align-items-center">{favoritesCount}</span>
+          </NavLink>
         ) : (
           ""
         )}

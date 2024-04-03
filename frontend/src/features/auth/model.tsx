@@ -18,8 +18,6 @@ export const useAuth = (
 ): {
   inputs: InputProps[];
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
-  rememberMe: boolean;
-  setRememberMe: Dispatch<SetStateAction<boolean>>;
 } => {
   const [user, setUser] = useState<User>({
     email: "",
@@ -28,7 +26,6 @@ export const useAuth = (
     password: "",
   });
   const [pswRepeat, setPswRepeat] = useState<string>("");
-  const [rememberMe, setRememberMe] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser({
@@ -91,8 +88,8 @@ export const useAuth = (
       ? { username: user.email, password: user.password }
       : user;
     const mode = isLoginForm ? "auth" : "reg";
-    authorise(data, setIsLoading, setAuth, navigate, rememberMe, mode);
+    authorise(data, setIsLoading, setAuth, navigate, mode);
   };
   const inputs = isLoginForm ? loginInputs : registerInputs;
-  return { inputs, onSubmit, rememberMe, setRememberMe };
+  return { inputs, onSubmit };
 };

@@ -1,6 +1,11 @@
+import { Dispatch, SetStateAction } from "react";
+import { toast } from "react-toastify";
+import { apiInstance, getValidToken } from "~/shared/api";
+
 export type Category = {
   id: number;
   name: string;
+  image: string;
 };
 
 export type ProductType = {
@@ -8,25 +13,41 @@ export type ProductType = {
   name: string;
   description: string;
   price: number;
-  category: Category;
+  category: string;
   image: string;
   seller: string;
   total_amount: number;
+  total_sales: number;
+  average_rating: number;
+  is_favorite: boolean;
   discount?: number;
 };
 
-export const sortProducts = (
-  products: ProductType[],
-  selectedOption: string
+export const addToFavorites = async (
+  product: ProductType,
+  setProduct: Dispatch<SetStateAction<ProductType>>
 ) => {
-  switch (selectedOption) {
-    case "by_price":
-      return products.sort((a, b) => a.price - b.price);
-    // case "by_sales":
-    //   return products.sort((a, b) => b.sales_count - a.sales_count);
-    // case "by_rating":
-    //   return products.sort((a, b) => b.rating - a.rating);
-    default:
-      return products;
+  const token = await getValidToken();
+  if (token) {
+    apiInstance
+      .post("/shop/toggle_favorite/", { product_id: product.id })
+      .then((response) => {
+        setProduct({ ...product, is_favorite: !product.is_favorite });
+        toast.success(response.data.message);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(
+          `Произошла ошибка. Продукт ${
+            product.is_favorite
+              ? "не удален из избранного"
+              : "не добавлен в избранное"
+          }`
+        );
+      });
+  } else {
+    toast.error(
+      "Вы не авторизованы. Авторизуйтесь, чтобы добавлять продукты в избранное"
+    );
   }
 };

@@ -1,20 +1,14 @@
-import { ProductItem, ProductType } from "~/entities/Product";
-import { Pagination, Select } from "~/shared/ui";
 import { Footer, Header } from "~/widgets";
+import { sortProducts } from "~/features";
+import { ProductItem, ProductType } from "~/entities/Product";
+import { createResource } from "~/shared/api";
+import { Pagination, Select } from "~/shared/ui";
+import { ChangeEvent, useState } from "react";
+
+const resource = createResource("/shop/products/");
 
 export default function Products() {
-  const products: ProductType[] = [
-    {
-      id: 1,
-      seller: "",
-      image: "images/product-6.jpg",
-      name: "MEN'S CLOTHES",
-      description: "Concepts Solid Pink Men’s Polo",
-      price: 150,
-      category: { id: 1, name: "" },
-      total_amount: 1,
-    },
-  ];
+  const [products, setProducts] = useState<ProductType[]>(resource.read());
   return (
     <>
       <Header />
@@ -23,23 +17,25 @@ export default function Products() {
           <h1>Все продукты</h1>
           <form>
             <Select
-              label="Сортировать по"
               options={[
-                { label: "По умолчанию", value: "" },
+                { label: "По умолчанию", value: "default" },
                 { label: "По цене", value: "by_price" },
                 { label: "По количеству продаж", value: "by_sales" },
                 { label: "По рейтингу", value: "by_rating" },
               ]}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+                setProducts(sortProducts(products, e.target.value));
+              }}
             />
           </form>
         </div>
         <div className="products container-2">
-          {products.map((product) => (
-            <ProductItem {...product} />
+          {products.map((product, key) => (
+            <ProductItem key={key} {...product} />
           ))}
         </div>
       </section>
-      <Pagination />
+      <Pagination data_length={products.length} setData={setProducts} />
       <Footer />
     </>
   );

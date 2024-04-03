@@ -1,3 +1,4 @@
+import { createResource } from "~/shared/api";
 import {
   Banner,
   Categories,
@@ -5,9 +6,10 @@ import {
   Footer,
   HeroSlider,
   Header,
-  NewArrivals,
+  ProductSection,
 } from "~/widgets";
 
+const resource = createResource("/shop/products/");
 export default function Home() {
   return (
     <>
@@ -16,7 +18,11 @@ export default function Home() {
         <HeroSlider />
       </header>
       <Categories />
-      <NewArrivals />
+      <ProductSection
+        title="NEW ARRIVALS"
+        description="All the latest picked from designer of our store"
+        products={resource.read()}
+      />
       <Banner />
       <Contacts />
       <Footer />

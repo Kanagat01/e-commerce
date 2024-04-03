@@ -10,19 +10,13 @@ export const authorise = async (
   setIsLoading: Dispatch<SetStateAction<boolean>>,
   setAuth: Dispatch<SetStateAction<boolean>>,
   navigate: NavigateFunction,
-  rememberMe: boolean,
   mode: "auth" | "reg"
 ) => {
   return apiInstance
     .post(mode === "auth" ? "auth/token/" : "auth/register/", data)
     .then((response) => {
-      if (rememberMe) {
-        localStorage.setItem("access_token", response.data.access);
-        localStorage.setItem("refresh_token", response.data.refresh);
-      } else {
-        sessionStorage.setItem("access_token", response.data.access);
-        sessionStorage.setItem("refresh_token", response.data.refresh);
-      }
+      localStorage.setItem("access_token", response.data.access);
+      localStorage.setItem("refresh_token", response.data.refresh);
       setAuth(true);
       navigate(HOME_ROUTE);
       toast.success(

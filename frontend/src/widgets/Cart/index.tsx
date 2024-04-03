@@ -14,6 +14,7 @@ export function Cart() {
   let amountsDict: Record<number, number> = {};
   let prevSum = 0;
   products.forEach((product) => {
+    // if not authorised, otherwise store it in db, and get it from there
     const storedAmount = sessionStorage.getItem(`amount_${product.id}`);
     amountsDict[product.id] = storedAmount ? Number(storedAmount) : 1;
     prevSum += amountsDict[product.id] * product.price;
@@ -22,6 +23,7 @@ export function Cart() {
   const [sum, setSum] = useState<number>(prevSum);
 
   const updateAmount = (id: number, newAmount: number, price: number) => {
+    // if not authorised, otherwise store it in db, and get it from there
     sessionStorage.setItem(`amount_${id}`, newAmount.toString());
     if (newAmount >= 1) {
       setSum((prevData) => prevData + (newAmount - amounts[id]) * price);
@@ -45,7 +47,7 @@ export function Cart() {
                   <img src={product.img} alt="" />
                   <div>
                     <p>{product.title}</p>
-                    <span>Цена: ${product.price}</span> <br />
+                    <span>Цена: {product.price} ₽</span> <br />
                     {/* <button className="remove-btn">удалить</button> */}
                   </div>
                 </div>
@@ -63,7 +65,7 @@ export function Cart() {
                   }
                 />
               </td>
-              <td>${amounts[product.id] * product.price}</td>
+              <td>{amounts[product.id] * product.price} ₽</td>
             </tr>
           ))}
         </tbody>
@@ -78,7 +80,7 @@ export function Cart() {
             ].map(([text, amountOfMoney]) => (
               <tr>
                 <td>{text}</td>
-                <td>${amountOfMoney}</td>
+                <td>{amountOfMoney}₽</td>
               </tr>
             ))}
           </tbody>

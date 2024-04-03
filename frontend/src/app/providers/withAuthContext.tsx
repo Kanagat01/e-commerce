@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { verifyToken } from "~/shared/api";
+import { getValidToken } from "~/shared/api";
 
 export type AuthContextType = {
   isAuthenticated: boolean;
@@ -22,18 +22,11 @@ export const withAuthContext = (component: () => ReactNode) => () => {
   const [isAuthenticated, setAuth] = useState<boolean>(false);
 
   useEffect(() => {
-    const accessToken =
-      sessionStorage.getItem("access_token") ||
-      localStorage.getItem("access_token");
-    const refreshToken =
-      sessionStorage.getItem("refresh_token") ||
-      localStorage.getItem("refresh_token");
-
-    Promise.all([verifyToken(accessToken), verifyToken(refreshToken)]).then(
-      ([isAccessTokenValid, isRefreshTokenValid]) => {
-        setAuth(isAccessTokenValid || isRefreshTokenValid);
-      }
-    );
+    const checkToken = async () => {
+      const token = await getValidToken();
+      setAuth(token ? true : false);
+    };
+    checkToken();
   }, []);
 
   return (

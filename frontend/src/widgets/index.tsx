@@ -5,5 +5,5 @@ export * from "./Contacts";
 export * from "./Footer";
 export * from "./Header";
 export * from "./HeroSlider";
-export * from "./NewArrivals";
+export * from "./ProductSection";
 export * from "./Popup";

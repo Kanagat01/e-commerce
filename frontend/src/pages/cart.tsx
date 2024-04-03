@@ -1,15 +1,11 @@
 import { ProductItem, ProductType } from "~/entities/Product";
+import { createResource } from "~/shared/api";
 import { Header, Footer, Cart } from "~/widgets";
 
+const resource = createResource("/shop/products/");
+
 export default function CartPage() {
-  const latestProducts: ProductType[] = [
-    {
-      img: "images/product-6.jpg",
-      title: "MEN'S CLOTHES",
-      description: "Concepts Solid Pink Men’s Polo",
-      price: 150,
-    },
-  ];
+  const latestProducts: ProductType[] = resource.read();
   return (
     <>
       <Header />

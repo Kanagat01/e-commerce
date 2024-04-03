@@ -11,7 +11,6 @@ export type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
-  label: string;
   options: Array<{ label: string; value: string | number }>;
 };
 
@@ -42,11 +41,10 @@ export function Select(props: SelectProps) {
   return (
     <>
       <select {...props}>
-        <option value={props.label} selected disabled>
-          {props.label}
-        </option>
-        {props.options.map((option) => (
-          <option value={option.value}>{option.label}</option>
+        {props.options.map((option, idx) => (
+          <option key={idx} value={option.value}>
+            {option.label}
+          </option>
         ))}
       </select>
       <span>
