@@ -31,7 +31,7 @@ export function ProductItem(product: TProduct) {
       </div>
       <div className={styles.icons}>
         <a onClick={() => markFavorite(product)}>
-          {product.isFavorite ? (
+          {product.is_favorite ? (
             <i className="bx bxs-heart" style={{ color: "red" }}></i>
           ) : (
             <i className="bx bx-heart"></i>

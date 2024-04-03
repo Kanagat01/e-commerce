@@ -9,7 +9,11 @@ export const fetchProductsFx = createEffect(async () => {
   return response.data;
 });
 
-$products.on(fetchProductsFx.doneData, (_, products) => products);
+$products.on(fetchProductsFx.doneData, (_, products) =>
+  products.map((p: TProduct) => {
+    return { ...p, is_favorite: false };
+  })
+);
 fetchProductsFx();
 
 // Получить продукт по ID
@@ -18,7 +22,6 @@ export const getProduct = (id: number) =>
 
 // --------------------
 // Обновить продукт
-// --------------------
 export const updateProduct = createEvent<{
   id: number;
   changes: Partial<TProduct>;
@@ -37,7 +40,6 @@ $products.on(updateProduct, update);
 
 // --------------------
 // Сортировать продукты
-// --------------------
 export const sortProducts = createEvent<{
   selectedOption: string;
 }>();

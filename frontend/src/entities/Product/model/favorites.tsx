@@ -1,17 +1,11 @@
 import { isAxiosError } from "axios";
-import { combine, createEffect, createEvent } from "effector";
+import { createEffect, createEvent } from "effector";
 import { toast } from "react-toastify";
-import { TProduct } from ".";
+import { updateFavorites } from "~/entities/User";
 import { apiInstance } from "~/shared/api";
-import { $userProfile, TUserProfile, updateFavorites } from "~/entities/User";
-
-export const $favoritesCount = combine(
-  $userProfile,
-  (userProfile: TUserProfile | null) => userProfile?.favorites.length || 0
-);
+import { TProduct } from ".";
 
 export const markFavorite = createEvent<TProduct>();
-
 const toggleFavoriteFx = createEffect(async (product: TProduct) => {
   const response = await apiInstance.post("/shop/toggle_favorite/", {
     product_id: product.id,

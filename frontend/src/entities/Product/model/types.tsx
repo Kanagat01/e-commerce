@@ -15,6 +15,6 @@ export type TProduct = {
   total_amount: number;
   total_sales: number;
   average_rating: number;
-  isFavorite: boolean;
+  is_favorite: boolean;
   discount?: number;
 };

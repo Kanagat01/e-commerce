@@ -4,7 +4,6 @@ import { Offcanvas } from "react-bootstrap";
 import { useUnit } from "effector-react";
 import { AuthContext } from "~/app/providers/withAuthContext";
 import { Logout } from "~/features";
-import { $favoritesCount } from "~/entities/Product";
 import {
   HOME_ROUTE,
   LOGIN_ROUTE,
@@ -13,6 +12,7 @@ import {
   FAVORITES_ROUTE,
 } from "~/shared/routes";
 import styles from "./styles.module.scss";
+import { $favoritesCount } from "~/entities/User";
 
 export function Header() {
   const { isAuthenticated } = useContext(AuthContext);

@@ -46,11 +46,3 @@ class ToggleFavoriteView(views.APIView):
         else:
             profile.favorites.add(product)
             return Response({"message": f"Продукт {product.name} добавлен в избранное"}, status=status.HTTP_200_OK)
-
-
-class FavoritesCntView(views.APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request, format=None):
-        profile = UserProfile.objects.get(user=request.user)
-        return Response({"favorites_cnt": profile.favorites.count()}, status=status.HTTP_200_OK)
