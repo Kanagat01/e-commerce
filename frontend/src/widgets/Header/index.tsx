@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Offcanvas } from "react-bootstrap";
 import { useUnit } from "effector-react";
-import { AuthContext } from "~/app/providers/withAuthContext";
 import { Logout } from "~/features";
 import {
   HOME_ROUTE,
@@ -13,16 +12,23 @@ import {
 } from "~/shared/routes";
 import styles from "./styles.module.scss";
 import { $favoritesCount } from "~/entities/User";
+import { $auth } from "~/features/auth";
+import { toast } from "react-toastify";
 
 export function Header() {
-  const { isAuthenticated } = useContext(AuthContext);
-
+  const isAuthenticated = useUnit($auth);
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
 
   const favoritesCount = useUnit($favoritesCount);
+  const disableClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
+    if (favoritesCount === 0) {
+      e.preventDefault();
+      toast.info("У вас нет продуктов добавленных в избранное");
+    }
+  };
   const renderIcons = () => {
     return (
       <>
@@ -30,7 +36,11 @@ export function Header() {
           <i className="bx bx-search"></i>
         </div>
         {isAuthenticated ? (
-          <NavLink to={FAVORITES_ROUTE} className={styles.icon}>
+          <NavLink
+            to={FAVORITES_ROUTE}
+            className={styles.icon}
+            onClick={disableClick}
+          >
             <i className="bx bx-heart"></i>
             <span className="d-flex align-items-center">{favoritesCount}</span>
           </NavLink>

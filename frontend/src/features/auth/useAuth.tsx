@@ -11,7 +11,6 @@ import { TRegisterData, loginInputs, registerInputs, authorise } from ".";
 
 export const useAuth = (
   navigate: NavigateFunction,
-  setAuth: Dispatch<SetStateAction<boolean>>,
   setIsLoading: Dispatch<SetStateAction<boolean>>,
   isLoginForm: boolean
 ): {
@@ -44,7 +43,7 @@ export const useAuth = (
       ? { username: user.email, password: user.password }
       : user;
     const mode = isLoginForm ? "auth" : "reg";
-    authorise(data, setIsLoading, setAuth, navigate, mode);
+    authorise(data, setIsLoading, navigate, mode);
   };
 
   return { inputs, onSubmit };

@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
-import { AuthContext } from "~/app/providers/withAuthContext";
 import { Button, Input } from "~/shared/ui";
 import { LOGIN_ROUTE, REGISTER_ROUTE } from "~/shared/routes";
 
@@ -11,15 +10,9 @@ import styles from "./styles.module.scss";
 
 export function AuthForm({ formType }: { formType: "login" | "register" }) {
   const navigate = useNavigate();
-  const { setAuth } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const isLoginForm = formType === "login";
-  const { inputs, onSubmit } = useAuth(
-    navigate,
-    setAuth,
-    setIsLoading,
-    isLoginForm
-  );
+  const { inputs, onSubmit } = useAuth(navigate, setIsLoading, isLoginForm);
 
   return (
     <div className={styles["login-form"]}>

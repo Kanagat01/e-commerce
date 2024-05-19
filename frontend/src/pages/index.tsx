@@ -1,7 +1,8 @@
-import { ReactElement, lazy } from "react";
+import { ReactElement, lazy, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import * as urls from "~/shared/routes";
 import { PrivateRoute } from "./PrivateRoute";
+import { fetchUserProfileFx } from "~/entities/User";
 
 const HomePage = lazy(() => import("./home"));
 const Cart = lazy(() => import("./cart"));
@@ -11,6 +12,9 @@ const Login = lazy(() => import("./login"));
 const Favorites = lazy(() => import("./favorites"));
 
 export const Routing = () => {
+  useEffect(() => {
+    fetchUserProfileFx();
+  });
   const routes: Array<[string, ReactElement]> = [
     [urls.HOME_ROUTE, <HomePage />],
     [urls.CART_ROUTE, <Cart />],

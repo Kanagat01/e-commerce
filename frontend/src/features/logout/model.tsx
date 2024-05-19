@@ -1,12 +1,13 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
+import { setAuth } from "~/features/auth";
 
-export const useLogout = (setAuth: Dispatch<SetStateAction<boolean>>) => {
+export const useLogout = () => {
   const [showModal, setShowModal] = useState(false);
   const changeModal = () => {
     setShowModal(!showModal);
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
     setAuth(false);

@@ -1,12 +1,9 @@
 import { Modal } from "react-bootstrap";
 import { Button } from "~/shared/ui";
 import { useLogout } from ".";
-import { useContext } from "react";
-import { AuthContext } from "~/app/providers/withAuthContext";
 
 export function Logout({ className }: { className: string }) {
-  const { setAuth } = useContext(AuthContext);
-  const { showModal, changeModal, handleLogout } = useLogout(setAuth);
+  const { showModal, changeModal, handleLogout } = useLogout();
   return (
     <>
       <div className={className} onClick={changeModal}>

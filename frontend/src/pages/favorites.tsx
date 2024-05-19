@@ -7,11 +7,7 @@ export default function Favorites() {
   return (
     <>
       <Header />
-      <ProductSection
-        title="Избранное"
-        description="Продукты добавленные в избранное"
-        products={userProfile!.favorites}
-      />
+      <ProductSection title="Избранное" products={userProfile!.favorites} />
       <Footer />
     </>
   );

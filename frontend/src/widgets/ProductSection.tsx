@@ -6,18 +6,24 @@ type ProductSectionProps = {
   products: TProduct[];
 };
 
-export function ProductSection(props: ProductSectionProps) {
+export function ProductSection({
+  title,
+  description,
+  products,
+}: ProductSectionProps) {
   return (
     <section className="section new-arrival">
       <div className="title">
-        <h1>{props.title}</h1>
-        <p>{props.description}</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
       </div>
 
       <div className="products">
-        {props.products.map((product, idx) => (
-          <ProductItem key={idx} {...product} />
-        ))}
+        {products.length > 0 ? (
+          products.map((product, idx) => <ProductItem key={idx} {...product} />)
+        ) : (
+          <p>Нет продуктов для отображения.</p>
+        )}
       </div>
     </section>
   );
